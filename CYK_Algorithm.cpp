@@ -34,7 +34,7 @@ int main() {
     cout.tie(0);
 
     /* Source CNF : https://www.cs.bgu.ac.il/~auto191/wiki.files/9a.pdf */
-    /* Urutan terminal */
+    /* Urutan nonterminal */
     map<char, int> mp;
     mp['S'] = 1;
     mp['A'] = 2;
@@ -59,7 +59,7 @@ int main() {
     // cin >> s /* jika mau input sendiri */
 
     n = inp.length(); // panjang input
-    m = 5; // banyaknya terminal
+    m = 5; // banyaknya nonterminal
 
     for (int s = 1; s <= n; s++) {
         for (int v = 1; v <= m; v++) {
@@ -78,7 +78,7 @@ int main() {
             for (int p = 1; p <= L - 1; p++) {
                 for (int a = 1; a <= m; a++) {
                     for (auto e : R[a]) {
-                        if ((int) e.size() == 1) continue; // skip yang nonterminal
+                        if ((int) e.size() == 1) continue; // skip yang terminal
                         int b = mp[e[0]];
                         int c = mp[e[1]];
                         if (dp[p][s][b] && dp[L - p][s + p][c]) {

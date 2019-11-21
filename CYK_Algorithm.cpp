@@ -23,7 +23,7 @@ else
 
 const int NMax = 300; // Maksimal input length
 const int RMax = 30; // Maksimal jumlah terminal
-bool dp[NMax][NMax][RMax];
+bool dp[NMax][NMax][RMax]; // dynamic programming
 vector<string> R[RMax]; // Terminal ada sebanyak RMax
 int n; // panjang input length
 int m; // jumlah terminal
@@ -34,7 +34,7 @@ int main() {
     cout.tie(0);
 
     /* Source CNF : https://www.cs.bgu.ac.il/~auto191/wiki.files/9a.pdf */
-    /* Urutan terminal */
+    /* Urutan nonterminal */
     map<char, int> mp;
     mp['S'] = 1;
     mp['A'] = 2;
@@ -56,10 +56,10 @@ int main() {
 
     // string input
     string inp = "aab";
-    // cin >> s /* jika mau input sendiri */
+    // cin >> inp; /* jika mau input sendiri */
 
     n = inp.length(); // panjang input
-    m = 5; // banyaknya terminal
+    m = 5; // banyaknya nonterminal
 
     for (int s = 1; s <= n; s++) {
         for (int v = 1; v <= m; v++) {
@@ -78,7 +78,7 @@ int main() {
             for (int p = 1; p <= L - 1; p++) {
                 for (int a = 1; a <= m; a++) {
                     for (auto e : R[a]) {
-                        if ((int) e.size() == 1) continue; // skip yang nonterminal
+                        if ((int) e.size() == 1) continue; // skip yang terminal
                         int b = mp[e[0]];
                         int c = mp[e[1]];
                         if (dp[p][s][b] && dp[L - p][s + p][c]) {

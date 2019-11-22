@@ -1,0 +1,3 @@
+A -> C | B B B B| a a
+C -> c c | d d | B
+B -> a

@@ -1,4 +1,5 @@
 from copy import deepcopy
+import string
 
 class CNF:
     """Class untuk merepresentasikan CNF"""
@@ -16,11 +17,23 @@ class CNF:
                         for line in f.read().split('\n')
                         if len(line.split('->')) == 2]
             for line in lines:
-                CFG_RULE[line[0].replace(" ", "")] = [production.split() for production in line[1].split('|')]
+                variable = line[0].replace(" ", "")
+                rawProductions = [rawProduction.split() for rawProduction in line[1].split('|')]
+                production = []
+                for rawProduction in rawProductions:
+                    production.append([ " " if item == "__space__" else
+                                        "|" if item == "__or_sym__" else
+                                        item for item in rawProduction])
+                CFG_RULE.update({variable: production})
         return CFG_RULE
 
     def isVariable(self, item):
-        return item.upper() == item
+        if len(item) == 1:
+            return False
+        for char in item:
+            if char not in (string.ascii_uppercase + '_' + string.digits):
+                return False
+        return True
 
     def removeUnitProduction(self, CFG):
         for variable in CFG:
@@ -83,7 +96,7 @@ def printD(dict):
 
 if __name__ == '__main__':
     CNF = CNF()
-    CFG = CNF.CFGfromFile("test.txt")
+    CFG = CNF.CFGfromFile("grammar.txt")
     print('CFG: ')
     printD(CFG)
     print()

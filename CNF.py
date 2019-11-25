@@ -47,7 +47,6 @@ class CNF:
                         newProduction = deepcopy([production for production in CFG[production[0]]
                                             if production not in productions])
                         productions.extend(newProduction)
-                        # print(production)
                         repeat = True
                         break
         return CFG
@@ -69,7 +68,8 @@ class CNF:
                 for idx, j in enumerate(productions):
                     if len(j) > 1:
                         for k in range(len(j)):
-                            productions[idx][k] = productions[idx][k].replace(terminal, f"{variable}_TERM_{i + 1}")
+                            if len(productions[idx][k]) == len(terminal):
+                                productions[idx][k] = productions[idx][k].replace(terminal, f"{variable}_TERM_{i + 1}")
             # Update productions so match A -> BC or A -> terminal
             idx = 1
             for i in range(len(productions)):

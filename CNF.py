@@ -47,6 +47,7 @@ class CNF:
                         newProduction = deepcopy([production for production in CFG[production[0]]
                                             if production not in productions])
                         productions.extend(newProduction)
+                        # print(production)
                         repeat = True
                         break
         return CFG
@@ -70,8 +71,8 @@ class CNF:
                         for k in range(len(j)):
                             productions[idx][k] = productions[idx][k].replace(terminal, f"{variable}_TERM_{i + 1}")
             # Update productions so match A -> BC or A -> terminal
+            idx = 1
             for i in range(len(productions)):
-                idx = 1
                 while len(productions[i]) > 2:
                     newRule.update({f"{variable}_EXT_{idx}": [[productions[i][0], productions[i][1]]]})
                     productions[i] = productions[i][1:]
@@ -93,14 +94,3 @@ def printD(dict):
                 print(dict[var][i])
             else:
                 print(dict[var][i],"| ",end="")
-
-if __name__ == '__main__':
-    CNF = CNF()
-    CFG = CNF.CFGfromFile("grammar.txt")
-    print('CFG: ')
-    printD(CFG)
-    print()
-    CNF = CNF.CFGtoCNF(CFG)
-    print('CNF: ')
-    printD(CNF)
-    print()

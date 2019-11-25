@@ -1,0 +1,30 @@
+START -> COND_OPERATION
+
+COND_OPERATION -> NRM_BKT_OPN COND_OPERATION NRM_BKT_CLS | COND_OPERAND COND_OPERATOR COND_OPERAND
+COND_OPERATOR -> REL_OP | LOG_OP | MEM_OP | IDN_OP
+COND_OPERAND -> VARIABLE | CONSTANT
+
+VARIABLE -> NRM_BKT_OPN VARIABLE NRM_BKT_CLS | VAR_FST_CHR VAR_NXT_CHR | VAR_FST_CHR
+VAR_FST_CHR -> CHARS_UP | CHARS_LOW | UNDERSCORE
+VAR_NXT_CHR -> VARIABLE VARIABLE | DIGITS | CHARS_UP | CHARS_LOW | UNDERSCORE
+
+CONSTANT -> NRM_BKT_OPN CONSTANT NRM_BKT_CLS | CONSTANT CONSTANT | DIGITS
+
+NRM_BKT_OPN -> (
+NRM_BKT_CLS -> )
+
+DIGITS -> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0
+CHARS_UP -> A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+CHARS_LOW -> a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+UNDERSCORE -> _
+
+SPACE -> SPACE SPACE | __space__
+OR_SYM -> __or_sym__
+
+REL_OP -> = = | ! = | < = | > = | < | >
+ASS_OP -> = | + = | - = | * = | * * = | / = | / / = | % =
+ART_OP -> + | - | * | * * | / | / / | %
+LOG_OP -> a n d | o r | n o t
+MEM_OP -> i n | n o t SPACE i n
+IDN_OP -> i s | i s SPACE n o t
+BIT_OP -> & | OR_SYM | ^ | > > | < < | ~

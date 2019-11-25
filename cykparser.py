@@ -1,7 +1,7 @@
 from CNF import CNF, printD
 
 NMax = 100
-RMax = 300
+RMax = 400
 
 dp = [[[0 for i in range(RMax)] for i in range(NMax)] for i in range(NMax)]
 R = [None]
@@ -13,9 +13,9 @@ CFG = CNF.CFGfromFile("grammar.txt")
 # printD(CFG)
 # print()
 CNF = CNF.CFGtoCNF(CFG)
-print('CNF: ')
-printD(CNF)
-print()
+#print('CNF: ')
+#printD(CNF)
+#print()
 
 
 mp = {}
@@ -45,7 +45,7 @@ for i, variable in enumerate(CNF):
 
 # exit(0)
 
-inp = "a=99if(1==1):(__A)=(2)"
+inp = "for i in x: continue"
 if(len(inp) >= 1000):
     print("Bacot")
     exit(0)

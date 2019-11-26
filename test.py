@@ -1,4 +1,4 @@
-def fname(arg):
-    pass
+# def fname(arg):
+#     pass
     with A() as a:
         return

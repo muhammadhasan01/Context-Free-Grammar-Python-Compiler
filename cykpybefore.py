@@ -17,11 +17,9 @@ def CYKParser(inp, CNF):
 
     # start_time = time.time()
     # Parse
-    cnt = 0
     for s in range(1, n + 1):
         for v in range(1, m + 1):
             for e in R[v]:
-                cnt += 1
                 if(e[0] == inp[s - 1]):
                     dp[1][s][v] = True
                     break
@@ -29,14 +27,11 @@ def CYKParser(inp, CNF):
     # print(cnt, "ini yang pertama => ", end_time - start_time)
 
     # start_time = time.time()
-
-    cnt = 0
     for l in range(2, n + 1):
         for s in range(1, (n - l + 2)):
             for p in range(1, l):
                 for a in range(1, m + 1):
                     for e in R[a]:
-                        cnt += 1
                         if(len(e) != 1):
                             b = mp[e[0]]
                             c = mp[e[1]]

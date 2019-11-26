@@ -57,12 +57,10 @@ if __name__ == "__main__":
     print(inp)
     inp = preprocessInput(inp)
     print(inp)
+    print(len(inp))
 
     # Check
-    if(len(inp) >= 1000):
-        print("Bacot")
-        exit(0)
-    elif(len(inp) == 0):
+    if (len(inp) == 0):
         print("Accepted")
         exit(0)
 

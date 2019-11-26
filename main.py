@@ -2,7 +2,7 @@ from converter import CFGfromFile, CFGtoCNF, printD
 from cykparser import CYKParser
 import re
 
-key = ["if", "elif", "else", "for", "in", "while", "continue", "pass", "break", "class", "def", "return", "as", "import", "from", "raise", "and", "or", "not", "is", "True", "False", "None"]
+mkey = {"if" : "a", "elif" : "b", "else" : "c", "for" : "d", "in" : "e", "while" : "f", "continue" : "g", "pass" : "h", "break" : "i", "class" : "j", "def" : "k", "return" : "l", "as" : "m", "import" : "n", "from" : "o", "raise" : "p", "and" : "q", "or" : "r", "not" : "s", "is" : "t", "True" : "u", "False" : "v", "None" : "w"}
 
 def preprocessInput(inp):
     global key
@@ -13,18 +13,20 @@ def preprocessInput(inp):
         x = re.search("[A-Za-z_][A-Za-z0-9_]*", inp)
         if x != None:
             newInp += inp[:x.span()[0]]
-            if x.group() not in key:
-                newInp += "var"
+            if x.group() not in mkey:
+                newInp += "x"
             else:
-                newInp += x.group()
+                newInp += mkey[x.group()]
             inp = inp[x.span()[1]:]
         else:
             newInp += inp
             inp = ""
 
-    newInp = re.sub("[0-9]+[A-Za-z_]+", "err", newInp)
+    newInp = re.sub("[0-9]+[A-Za-z_]+", "R", newInp)
+    newInp = re.sub("[0-9]+", "y", newInp)
     newInp = re.sub("#.*", "", newInp)
-    newInp = re.sub("\"\"\"[\s\S]*\"\"\"|\'\'\'[\s\S]*\'\'\'", "mstr", newInp)
+    newInp = re.sub("\"\"\"[\s\S]*\"\"\"|\'\'\'[\s\S]*\'\'\'", "z", newInp)
+    newInp = re.sub("\"[\s\S]*\"|\'[\s\S]*\'", "z", newInp)
     return (newInp.replace(" ", ""))
 
 def fileReader(path):

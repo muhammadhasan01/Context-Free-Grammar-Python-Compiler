@@ -23,7 +23,7 @@ def preprocessInput(inp):
             inp = ""
 
     newInp = re.sub("[0-9]+[A-Za-z_]+", "R", newInp)
-    newInp = re.sub("[+-]*[0-9]+", "y", newInp)
+    newInp = re.sub("[0-9]+", "y", newInp)
     newInp = re.sub("#.*", "", newInp)
     mltstr = re.findall(r'([\'\"])\1\1(.*?)\1{3}', newInp, re.DOTALL)
     for i in range(len(mltstr)):

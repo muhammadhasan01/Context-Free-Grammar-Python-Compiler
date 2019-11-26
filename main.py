@@ -23,6 +23,7 @@ def preprocessInput(inp):
             inp = ""
 
     newInp = re.sub("[0-9]+[A-Za-z_]+", "err", newInp)
+    newInp = re.sub("#.*", "", newInp)
 
     return (newInp.replace(" ", ""))
 
@@ -34,7 +35,7 @@ if __name__ == "__main__":
     # print('CNF: '); printD(CNF); print()
 
     # Input
-    inp = "from Crypto.Util.number import long_to_bytes as hehe, hehe as hehe"
+    inp = "hasan.imba()#imbabanget"
     # inp = "if 123==((ifaif)): while ifwhile:"
     # inp = "if 123==((ifaif)):1a=2"
     print(inp)

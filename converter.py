@@ -78,7 +78,7 @@ def CFGtoCNF(CFG):
     CNF = updateToCNF(CFG)
     return CNF
 
-def printD(dict):
+def printGrammar(dict):
     for var in dict:
         print(var,"-> ",end="")
         for i in range(len(dict[var])):

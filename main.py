@@ -1,4 +1,4 @@
-from converter import CFGfromFile, CFGtoCNF, printD
+from converter import CFGfromFile, CFGtoCNF, printGrammar
 from cykparser import CYKParser
 import re
 
@@ -47,9 +47,9 @@ def fileReader(path):
 if __name__ == "__main__":
     # Get CNF
     CFG = CFGfromFile("grammar.txt")
-    # print('CFG: '); printD(CFG); print()
+    # print('CFG: '); printGrammar(CFG); print()
     CNF = CFGtoCNF(CFG)
-    print('CNF: '); printD(CNF); print()
+    print('CNF: '); printGrammar(CNF); print()
 
     # Input
     inp = fileReader("test.py")

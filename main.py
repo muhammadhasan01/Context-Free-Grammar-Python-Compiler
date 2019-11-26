@@ -34,7 +34,7 @@ if __name__ == "__main__":
     # print('CNF: '); printD(CNF); print()
 
     # Input
-    inp = "for i in x:continue"
+    inp = "from Crypto.Util.number import long_to_bytes as hehe, hehe as hehe"
     # inp = "if 123==((ifaif)): while ifwhile:"
     # inp = "if 123==((ifaif)):1a=2"
     print(inp)

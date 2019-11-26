@@ -45,7 +45,7 @@ for i, variable in enumerate(CNF):
 
 # exit(0)
 
-inp = "for i in x:for x in y:a=2pass"
+inp = "fromCNFimportCNF,printD"
 if(len(inp) >= 1000):
     print("Bacot")
     exit(0)

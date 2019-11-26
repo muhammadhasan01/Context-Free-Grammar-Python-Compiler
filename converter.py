@@ -14,6 +14,7 @@ def CFGfromFile(grammarPath):
             for rawProduction in rawProductions:
                 production.append([ " " if item == "__space__" else
                                     "|" if item == "__or_sym__" else
+                                    "\n" if item == "__new_line__" else
                                     item for item in rawProduction])
             CFG_RULE.update({variable: production})
     return CFG_RULE

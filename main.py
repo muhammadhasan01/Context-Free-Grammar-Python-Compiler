@@ -30,9 +30,14 @@ def preprocessInput(inp):
         multi = mltstr[i][0]*3 + mltstr[i][1] + mltstr[i][0]*3
         newInp = newInp.replace(multi, "z")
 
-    newInp = re.sub("\"\"\"[\s\S]*\"\"\"|\'\'\'[\s\S]*\'\'\'", "z", newInp)
-    newInp = re.sub("\"[\s\S]*\"|\'[\s\S]*\'", "z", newInp)
-    return (newInp.replace(" ", ""))
+    str = re.findall(r'([\'\"])(.*?)\1{1}', newInp, re.DOTALL)
+    for i in range(len(str)):
+        one = str[i][0] + str[i][1] + str[i][0]
+        newInp = newInp.replace(one, "z")
+
+    newInp = newInp.replace(" ", "")
+    newInp = re.sub("[xyz]{1}:[xyz]{1},", "", newInp)
+    return (newInp)
 
 def fileReader(path):
     with open(path, "r") as f:

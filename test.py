@@ -1,1 +1,1 @@
-a[3] = (12) * 1
+string.printable

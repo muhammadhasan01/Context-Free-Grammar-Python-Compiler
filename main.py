@@ -24,20 +24,24 @@ def preprocessInput(inp):
 
     newInp = re.sub("[0-9]+[A-Za-z_]+", "err", newInp)
     newInp = re.sub("#.*", "", newInp)
-
+    newInp = re.sub("\"\"\"[\s\S]*\"\"\"|\'\'\'[\s\S]*\'\'\'", "mstr", newInp)
     return (newInp.replace(" ", ""))
+
+def fileReader(path):
+    with open(path, "r") as f:
+        content = f.read()
+    return content
 
 if __name__ == "__main__":
     # Get CNF
     CFG = CFGfromFile("grammar.txt")
     # print('CFG: '); printD(CFG); print()
     CNF = CFGtoCNF(CFG)
-    # print('CNF: '); printD(CNF); print()
+    print('CNF: '); printD(CNF); print()
 
     # Input
-    inp = "hasan.imba()#imbabanget"
-    # inp = "if 123==((ifaif)): while ifwhile:"
-    # inp = "if 123==((ifaif)):1a=2"
+    inp = fileReader("test.py")
+
     print(inp)
     inp = preprocessInput(inp)
     print(inp)

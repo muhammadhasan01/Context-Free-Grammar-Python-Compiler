@@ -1,1 +1,3 @@
-string.printable
+def a():
+    class lkajdf:
+        pass

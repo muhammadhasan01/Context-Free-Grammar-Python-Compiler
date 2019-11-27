@@ -1,5 +1,6 @@
 from converter import CFGfromFile, CFGtoCNF, printGrammar
 from cykparser import CYKParser
+import sys
 import re
 
 mkey = {"if" : "a", "elif" : "b", "else" : "c", "for" : "d", "in" : "e", "while" : "f", "continue" : "g", "pass" : "h", "break" : "i", "class" : "j", "def" : "k", "return" : "l", "as" : "m", "import" : "n", "from" : "o", "raise" : "p", "and" : "q", "or" : "r", "not" : "s", "is" : "t", "True" : "u", "False" : "v", "None" : "w", "with" : "A"}
@@ -44,25 +45,48 @@ def fileReader(path):
         content = f.read()
     return content
 
+def banner():
+    print("   ___       _   _                        ")
+    print("  / _ \_   _| |_| |__   ___  _ __         ")
+    print(" / /_)/ | | | __| '_ \ / _ \| '_ \        ")
+    print("/ ___/| |_| | |_| | | | (_) | | | |       ")
+    print("\/     \__, |\__|_| |_|\___/|_| |_|       ")
+    print("       |___/                              ")
+    print("   ___                      _ _           ")
+    print("  / __\___  _ __ ___  _ __ (_) | ___ _ __ ")
+    print(" / /  / _ \| '_ ` _ \| '_ \| | |/ _ \ '__|")
+    print("/ /__| (_) | | | | | | |_) | | |  __/ |   ")
+    print("\____/\___/|_| |_| |_| .__/|_|_|\___|_|   ")
+    print("                     |_|                  ")
+    print("version 4.05")
+
 if __name__ == "__main__":
     # Get CNF
+    banner()
     CFG = CFGfromFile("grammar.txt")
-    # print('CFG: '); printGrammar(CFG); print()
     CNF = CFGtoCNF(CFG)
-    print('CNF: '); printGrammar(CNF); print()
 
     # Input
-    inp = fileReader("test.py")
+    inp = fileReader(sys.argv[1])
+    source = inp
 
-    print(inp)
+    # Preprocess
     inp = preprocessInput(inp)
-    print(inp)
-    print(len(inp))
+
+    #Waiting message
+    print("Compiling " + str(sys.argv[1]) + "...\n")
+    print("Waiting for your verdict...\n")
 
     # Check
+    print("\n")
+    print(source)
+    print("\n")
+    print("===========")
     if (len(inp) == 0):
         print("Accepted")
+        print("===========")
         exit(0)
-
+    
     # Parse
     CYKParser(inp, CNF)
+    print("===========")

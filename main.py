@@ -33,7 +33,7 @@ def preprocessInput(inp):
     mltstr = re.findall(r'([\'\"])\1\1(.*?)\1{3}', newInp, re.DOTALL)
     for i in range(len(mltstr)):
         multi = mltstr[i][0]*3 + mltstr[i][1] + mltstr[i][0]*3
-        newInp = newInp.replace(multi, "z")
+        newInp = newInp.replace(multi, "z\n" * mltstr[i][1].count("\n"))
 
     str = re.findall(r'([\'\"])(.*?)\1{1}', newInp, re.DOTALL)
     for i in range(len(str)):

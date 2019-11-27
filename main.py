@@ -37,7 +37,7 @@ def preprocessInput(inp):
 
     newInp = newInp.replace(" ", "")
     newInp = re.sub("[xyz]{1}:[xyz]{1},", "", newInp)
-    return (newInp)
+    return (newInp + '\n')
 
 def fileReader(path):
     with open(path, "r") as f:

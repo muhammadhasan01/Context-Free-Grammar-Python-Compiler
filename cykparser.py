@@ -2,6 +2,17 @@ def CYKParser(inp, CNF):
     # Init
     n = len(inp) # input length
     m = len(CNF) # nonterminals
+    newlines = {}
+    newlinesString = {}
+    cntNewLines = 0
+    curStr = ""
+    for i in range(len(inp)):
+        if (inp[i] == '\n'):
+            cntNewLines += 1
+            newlines[i] = cntNewLines
+            newlinesString[i] = curStr
+            curStr = ""
+        curStr += inp[i]
 
     dp = [[[0 for i in range(m + 1)] for i in range(n + 1)] for i in range(n + 1)]
     R = [None] * (m + 1)
@@ -36,4 +47,8 @@ def CYKParser(inp, CNF):
     if (dp[n][1][1]):
         print("Accepted")
     else :
-        print("Syntax Error")
+        for i in range(1, n + 1):
+            if (dp[i][1][1] == False and inp[i - 1] == '\n'):
+                print(newlinesString[i - 1])
+                print("^Syntax error in line", newlines[i - 1])
+                break

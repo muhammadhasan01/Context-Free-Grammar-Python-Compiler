@@ -113,13 +113,18 @@ if __name__ == "__main__":
 
     # Check
     print("========================= SOURCE CODE =========================\n")
-    print(inpHighlighted)
-    print("=========================== VERDICT ===========================\n")
+    for i, line in enumerate(inpHighlighted.split("\n")):
+        idx =   f"  {i + 1} | " if len(str(i + 1)) == 1 else\
+                f" {i + 1} | " if len(str(i + 1)) == 2 else\
+                f"{i + 1} | "
+        print(idx + line)
+    # print(inpHighlighted.replace("\n", "\n"))
+    print("\n=========================== VERDICT ===========================\n")
     if (len(inp) == 0):
         print("Accepted")
         print("\n===============================================================")
         exit(0)
 
     # Parse
-    CYKParser(inp, CNF)
+    CYKParser(inp, CNF, source)
     print("\n===============================================================")

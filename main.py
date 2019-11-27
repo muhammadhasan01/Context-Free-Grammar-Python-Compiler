@@ -78,9 +78,6 @@ if __name__ == "__main__":
     CFG = CFGfromFile("grammar.txt")
     CNF = CFGtoCNF(CFG)
 
-    for i in range(3, 0, -1):
-        print(i)
-
     # Input
     inp = fileReader(sys.argv[1])
     inpHighlighted = highlightNameError(inp)
@@ -92,21 +89,6 @@ if __name__ == "__main__":
     #Waiting message
     print("Compiling " + str(sys.argv[1]) + "...\n")
     # Check
-<<<<<<< HEAD
-    print(source)
-
-    print("Waiting for your verdict...\n")
-
-
-    print()
-    print(inp)
-    if (len(inp) == 0):
-        print("Accepted")
-        exit(0)
-
-    # Parse
-    CYKParser(inp, CNF, source)
-=======
     print("========================= SOURCE CODE =========================\n")
     print(inpHighlighted)
     print("=========================== VERDICT ===========================\n")
@@ -116,6 +98,5 @@ if __name__ == "__main__":
         exit(0)
 
     # Parse
-    CYKParser(inp, CNF)
+    CYKParser(inp, CNF, source)
     print("\n===============================================================")
->>>>>>> 2ec44da07504d105fe747afd5ad5ec86113f7669

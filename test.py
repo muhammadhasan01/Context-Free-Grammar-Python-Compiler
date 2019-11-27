@@ -1,7 +1,9 @@
-<<<<<<< HEAD
-a = 2
-b = 3;
-c = 3
-=======
-a = 2
->>>>>>> 4199026b0c6218ec8c15f50b6744393194798b24
+with open(FILE_OUTPUT_NAME, 'asdf') as f_out:
+        for c in text:
+            ascii = ord(c)
+            if ascii == PIPE_ASCII:
+                f_out.write('I')
+            elif ascii in ACCEPTED_ASCII_LIST:
+                f_out.write[c]
+            else ascii == 1:
+                f_out.write(' ')

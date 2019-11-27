@@ -5,6 +5,10 @@ import re
 
 mkey = {"if" : "a", "elif" : "b", "else" : "c", "for" : "d", "in" : "e", "while" : "f", "continue" : "g", "pass" : "h", "break" : "i", "class" : "j", "def" : "k", "return" : "l", "as" : "m", "import" : "n", "from" : "o", "raise" : "p", "and" : "q", "or" : "r", "not" : "s", "is" : "t", "True" : "u", "False" : "v", "None" : "w", "with" : "A"}
 
+# Color code
+normal = "\033[1;37;40m"
+red = "\033[1;37;41m"
+
 def preprocessInput(inp):
     global key
 
@@ -41,8 +45,6 @@ def preprocessInput(inp):
     return (newInp + '\n')
 
 def highlightNameError(inp):
-    normal = "\033[1;37;40m"
-    red = "\033[1;37;41m"
     newInp = ""
     while inp:
         x = re.search("[0-9]+[A-Za-z_]+", inp)
@@ -60,6 +62,7 @@ def fileReader(path):
     return content
 
 def banner():
+    print()
     print("                  ___       _   _                     ")
     print("                 / _ \_   _| |_| |__   ___  _ __      ")
     print("                / /_)/ | | | __| '_ \ / _ \| '_ \     ")
@@ -73,13 +76,31 @@ def banner():
     print("                                 |_|   version 4.05   \n\n")
 
 if __name__ == "__main__":
-    # Get CNF
     banner()
+
+    # Get CNF
     CFG = CFGfromFile("grammar.txt")
     CNF = CFGtoCNF(CFG)
 
     # Input
-    inp = fileReader(sys.argv[1])
+    if (len(sys.argv) < 2):
+        inpFilePath = "test.py"
+    else:
+        inpFilePath = sys.argv[1]
+
+    try:
+        inp = fileReader(inpFilePath)
+    except Exception as e:
+        print(red + "Error:" + str(e) + normal)
+        print("Using default path: 'test.py'\n")
+        try:
+            inpFilePath = "test.py"
+            inp = fileReader(inpFilePath)
+        except Exception as e:
+            print(red + "Error:" + str(e) + normal)
+            print("Terminating program...\n")
+            exit(0)
+
     inpHighlighted = highlightNameError(inp)
     source = inp
 
@@ -87,7 +108,7 @@ if __name__ == "__main__":
     inp = preprocessInput(inp)
 
     #Waiting message
-    print("Compiling " + str(sys.argv[1]) + "...\n")
+    print("Compiling " + str(inpFilePath) + "...\n")
     print("Waiting for your verdict...\n")
 
     # Check

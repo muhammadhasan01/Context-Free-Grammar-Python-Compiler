@@ -54,7 +54,7 @@ def highlightNameError(inp):
         else:
             newInp += inp
             inp = ""
-    return (newInp + '\n')
+    return (newInp)
 
 def fileReader(path):
     with open(path, "r") as f:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     banner()
 
     # Get CNF
-    CFG = CFGfromFile("grammar.txt")
+    CFG = CFGfromFile("grammar2.txt")
     CNF = CFGtoCNF(CFG)
 
     # Input

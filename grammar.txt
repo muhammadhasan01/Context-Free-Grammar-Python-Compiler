@@ -200,7 +200,7 @@ DOT -> .
 PLUS -> +
 MINUS -> -
 MULTIPLY -> *
-NEWLINE -> NEWLINE NEWLINE | __new_line__
+NEWLINE -> NEWLINE NEWLINE | __new_line__ | __new_line2__
 SPACE -> SPACE SPACE | __space__
 OR_SYM -> __or_sym__
 REL_OP -> = = | ! = | < = | > = | < | > | IS
